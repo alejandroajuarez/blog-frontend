@@ -10,7 +10,10 @@ export function PostsNew() {
         <div>
           Body: <input type="text" />
         </div>
+        <div>
         <button type="submit">Upload Picture</button>
+        </div>
+        <button type="submit">Create Post</button>
       </form>
     </div>
   );
