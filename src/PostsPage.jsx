@@ -17,6 +17,7 @@ export function PostsPage() {
   }
 
 useEffect(handleIndex, []);
+
   return (
     <div>
       {/* <button onClick={handleIndex}>Pull Rails Data</button> */}
