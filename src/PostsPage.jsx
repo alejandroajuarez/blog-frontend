@@ -2,6 +2,7 @@ import axios from "axios";
 import { PostsNew } from './PostsNew';
 import { PostsIndex } from './PostsIndex';
 import { useState, useEffect } from "react";
+import { Modal } from "./Modal";
 
 export function PostsPage() {
   const [posts, setPosts] = useState([]);
@@ -16,13 +17,28 @@ export function PostsPage() {
     })
   }
 
+  const handleShow = (post) => {
+    console.log(post);
+    setIsPostsShowVisible(true);
+  }
+
+  const handleCloseModal = () => {
+    console.log("close modal");
+    setIsPostsShowVisible(false);
+  }
+
+  const [isPostShowVisible, setIsPostsShowVisible] = useState(false);
+
 useEffect(handleIndex, []);
 
   return (
     <div>
       {/* <button onClick={handleIndex}>Pull Rails Data</button> */}
       <PostsNew />
-      <PostsIndex posts={posts} />
+      <PostsIndex posts={posts} onShow={handleShow} />
+      <Modal show={isPostShowVisible} onClose={handleCloseModal}>
+        <p>TEST</p>
+      </Modal>
     </div>
   );
 }
