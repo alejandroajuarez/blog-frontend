@@ -1,5 +1,3 @@
-import axios from "axios"
-
 export function PostsNew({ onCreate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
