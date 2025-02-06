@@ -1,14 +1,12 @@
 import axios from "axios"
 
-export function PostsNew() {
+export function PostsNew({ onCreate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("in handle submit");
     const params = new FormData(event.target)
-    axios.post("http://localhost:3000/posts.json", params).then(response => {console.log(response.data)
-      window.location.href = "/"
-    })
-    console.log("You posted a blog post!");
+    onCreate(params)
+    event.target.reset()
   }
 
   return (

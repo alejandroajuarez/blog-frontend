@@ -9,9 +9,9 @@ export function PostsIndex({ posts, onShow }) {
         <div>
           <h2>{post.title}</h2>
         </div>
-        <div>
+        {/* <div>
           <p>{post.body}</p>
-        </div>
+        </div> */}
         <div> 
           <img src={post.image} />
         </div>

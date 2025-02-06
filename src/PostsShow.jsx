@@ -7,6 +7,14 @@ export function PostsShow({ post }) {
     const params = new FormData(event.target)
     axios.patch(`http://localhost:3000/posts/${post.id}.json`, params).then(response => {
       console.log(response.data)
+      // window.location.href = "/"
+    })
+  }
+
+  const handleDestroy = () => {
+    console.log("Post Deleted")
+    axios.delete(`http://localhost:3000/posts/${post.id}.json`).then(response => {
+      console.log(response.data)
       window.location.href = "/"
     })
   }
@@ -24,6 +32,10 @@ export function PostsShow({ post }) {
           <p>Image: <input type="text" name="image" defaultValue={post.image} /></p>
           <button>Update Post</button>
       </form>
+      <br />
+      <br />
+      <br />
+      <button onClick={handleDestroy}>Detele Post</button>
     </div>
   )
 }

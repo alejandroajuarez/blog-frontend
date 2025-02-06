@@ -33,12 +33,22 @@ export function PostsPage() {
     setIsPostsShowVisible(false);
   }
 
+  const handleCreate = (params) => {
+    console.log("Trying to create post..");
+    axios.post("http://localhost:3000/posts.json", params).then(response => {
+      console.log(response.data)
+      // Make a copy of the Post array and then add a new post to it
+      // Resets the posts to the new array without refreshing
+      setPosts([...posts, response.data])
+    })
+  }
+
 useEffect(handleIndex, []);
 
   return (
     <div>
       {/* <button onClick={handleIndex}>Pull Rails Data</button> */}
-      <PostsNew />
+      <PostsNew onCreate={handleCreate} />
       <PostsIndex posts={posts} onShow={handleShow} />
       <Modal show={isPostShowVisible} onClose={handleCloseModal}>
         <PostsShow post={currentPost} />
