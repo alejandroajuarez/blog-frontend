@@ -1,22 +1,14 @@
-import axios from "axios"
-
-export function PostsShow({ post }) {
+export function PostsShow({ post, onUpdate, onDestroy }) {
   const handleUpdate = (event) => {
     event.preventDefault();
     console.log('handling update');
     const params = new FormData(event.target)
-    axios.patch(`http://localhost:3000/posts/${post.id}.json`, params).then(response => {
-      console.log(response.data)
-      // window.location.href = "/"
-    })
+    onUpdate(params, post)
   }
 
-  const handleDestroy = () => {
+  const handleRemove = () => {
     console.log("Post Deleted")
-    axios.delete(`http://localhost:3000/posts/${post.id}.json`).then(response => {
-      console.log(response.data)
-      window.location.href = "/"
-    })
+    onDestroy(post)
   }
   return (
     <div>
@@ -35,7 +27,7 @@ export function PostsShow({ post }) {
       <br />
       <br />
       <br />
-      <button onClick={handleDestroy}>Detele Post</button>
+      <button onClick={handleRemove}>Detele Post</button>
     </div>
   )
 }

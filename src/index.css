@@ -1,3 +1,7 @@
+#posts-new {
+  align-items: left;
+}
+
 #posts-index {
   width: 300px;
 }

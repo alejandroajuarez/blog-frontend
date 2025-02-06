@@ -43,6 +43,28 @@ export function PostsPage() {
     })
   }
 
+  const handleUpdate = (params, post) => {
+    console.log("Updating Post");
+    axios.patch(`http://localhost:3000/posts/${post.id}.json`, params).then(response => {
+      console.log(response.data)
+      setIsPostsShowVisible(false)
+      // Loop through posts array
+      // find the post I want to update
+      // swap out the current values for response.data
+      setPosts(posts.map(p => p.id === response.data.id ? response.data : p))
+    })
+  }
+
+  const handleDestroy = (post) => {
+    console.log("Deleting Post");
+    axios.patch(`http://localhost:3000/posts/${post.id}.json`).then(response => {
+      console.log(response.data)
+      // Loop through the array of posts, delete the ones with the id of recipe.id (the post that is selected)
+      setPosts(posts.filter(p => p.id !== post.id))
+      setIsPostsShowVisible(false)
+    })
+  }
+
 useEffect(handleIndex, []);
 
   return (
@@ -51,7 +73,7 @@ useEffect(handleIndex, []);
       <PostsNew onCreate={handleCreate} />
       <PostsIndex posts={posts} onShow={handleShow} />
       <Modal show={isPostShowVisible} onClose={handleCloseModal}>
-        <PostsShow post={currentPost} />
+        <PostsShow post={currentPost} onUpdate={handleUpdate} onDestroy={handleDestroy}/>
       </Modal>
     </div>
   );
