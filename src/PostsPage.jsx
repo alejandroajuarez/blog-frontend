@@ -22,7 +22,10 @@ export function PostsPage() {
 
   const handleShow = (post) => {
     console.log(post);
+    setCurrentPost(post);
+    console.log("After current post");
     setIsPostsShowVisible(true);
+    console.log("after showvisible");
   }
 
   const handleCloseModal = () => {

@@ -2,8 +2,11 @@ import axios from "axios"
 
 export function PostsNew() {
   const handleSubmit = (event) => {
-    event.preventDefault()
-    axios.post("http://localhost:3000/posts.json", {title: "fdj;al", body: "fdjlafjldajlf", image: "fdjka"}).then(response => {console.log(response.data)
+    event.preventDefault();
+    console.log("in handle submit");
+    const params = new FormData(event.target)
+    axios.post("http://localhost:3000/posts.json", params).then(response => {console.log(response.data)
+      window.location.href = "/"
     })
     console.log("You posted a blog post!");
   }
